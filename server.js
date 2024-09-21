@@ -8,6 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
 // Connect to MongoDB
 mongoose
   .connect("mongodb+srv://gaoba:gaoba123@cluster0.nthnq.mongodb.net/chatapp")

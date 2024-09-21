@@ -8,16 +8,28 @@ const router = express.Router();
 
 router.post(
   "/register",
-  body("username").isLength({ min: 3 }),
-  body("email").isEmail(),
-  body("password").isLength({ min: 5 }),
+  [
+    body("username")
+      .isLength({ min: 3 })
+      .withMessage("Username must be at least 3 characters long"),
+    body("email").isEmail().withMessage("Invalid email address"),
+    body("password")
+      .isLength({ min: 5 })
+      .withMessage("Password must be at least 5 characters long"),
+  ],
   register
 );
 
 router.post(
   "/login",
-  body("usernameOrEmail").notEmpty(),
-  body("password").isLength({ min: 5 }),
+  [
+    body("usernameOrEmail")
+      .notEmpty()
+      .withMessage("Username or email is required"),
+    body("password")
+      .isLength({ min: 5 })
+      .withMessage("Password must be at least 5 characters long"),
+  ],
   login
 );
 

@@ -12,6 +12,11 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
+// Basic route to check if the server is running
+app.get("/", (req, res) => {
+  res.send("<h1>Server is running!</h1>");
+});
+
 // Use user routes
 app.use("/api", userRoutes);
 
